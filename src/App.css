@@ -1,0 +1,24 @@
+#leftDiv {
+  flex: 1;
+}
+
+#leftDiv:first-child {
+  margin-right: 5px;
+  padding-right: 10%;
+}
+
+#rightDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 10px;
+}
+
+#rightDiv:first-child {
+  padding-right: 10px;
+}
+
+.task-finished {
+  text-decoration: line-through;
+  color: grey;
+}

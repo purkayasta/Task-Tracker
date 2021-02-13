@@ -1,6 +1,9 @@
-export const Button = ({ btnName, btnBgColor }) => {
+import { useState } from "react";
+
+export const Button = ({ btnName, btnBgColor, onAction }) => {
+  
   return (
-    <button className='btn' style={{ backgroundColor: btnBgColor }} >{btnName}</button>
+    <button onClick={onAction} className='btn' style={{ backgroundColor: btnBgColor }} >{btnName}</button>
   )
 };
 

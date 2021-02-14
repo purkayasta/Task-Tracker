@@ -1,33 +1,33 @@
-import { useState } from 'react';
+import { useState } from "react"
 
 export const AddTaskComponent = ({ onAdd }) => {
-    const [name, setName] = useState('');
-    const [day, setTime] = useState('');
+    const [name, setName] = useState("")
+    const [day, setTime] = useState("")
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        onAdd({ name, day });
+        onAdd({ name, day, finished: false })
 
-        setName('');
-        setTime('');
-    };
+        setName("")
+        setTime("")
+    }
 
     return (
-        <form className='add-form' onSubmit={onSubmit}>
-            <div className='form-control'>
+        <form className="add-form" onSubmit={onSubmit}>
+            <div className="form-control">
                 <label>Task</label>
-                <input type='text' placeholder='Add Task'
+                <input type="text" placeholder="Add Task"
                     value={name}
                     onChange={(e) => setName(e.target.value)} />
             </div>
-            <div className='form-control'>
+            <div className="form-control">
                 <label>Time</label>
-                <input type='text' placeholder='Add Time'
+                <input type="text" placeholder="Add Time"
                     value={day}
                     onChange={(e) => setTime(e.target.value)} />
             </div>
-            <input className='btn btn-block' type='submit' value='Add' />
+            <input className="btn btn-block" type="submit" value="Add" />
         </form>
     )
 }

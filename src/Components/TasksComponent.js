@@ -1,15 +1,31 @@
 import { FaCheckCircle, FaTimes } from 'react-icons/fa'
 
 export const TasksComponent = ({ tasks, setTasks }) => {
-  const deleteTask = (taskId) => {
+
+  const deleteTask = async (taskId) => {
+    await fetch(`http://localhost:5000/tasks/${taskId}`, { method: 'DELETE' });
     setTasks(tasks.filter((x) => x.id !== taskId));
   };
-  const finishedTask = (taskId) => {
+
+  const finishedTask = async (taskId) => {
+    var getRequest = await (await fetch(`http://localhost:5000/tasks/${taskId}`)).json();
+
+    getRequest.finished = getRequest.finished == true ? false : true;
+
+    var requestOption = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(getRequest)
+    };
+
+    const request = await fetch(`http://localhost:5000/tasks/${taskId}`, requestOption);
+    var response = await request.json();
+
     setTasks(
       tasks.map((task) =>
-        task.id === taskId ? { ...task, finished: !task.finished } : task)
-    );
-  };
+        task.id === taskId ? { ...task, finished: response.finished } : task)
+    )
+  }
 
 
   return (
@@ -28,4 +44,4 @@ export const TasksComponent = ({ tasks, setTasks }) => {
       ))}
     </>
   )
-};
+}
